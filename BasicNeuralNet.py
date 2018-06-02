@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-This program performs logistic regression on a dataset of images of cats and dogs and outputs a classifier which can classify an image as a dog or cat.
-The code can also be reused for other datasets with some minor changes
+This program performs a classification on datasets generated using sklearn. The structure of our classifier is of a simple neural net with a single hidden tanh layer 
+followed by a sigmoid output layer.
 
 @author: Randeep
 """
@@ -19,6 +19,8 @@ def sigmoid(x):
     return (1/(1+np.exp(-x)))
 
 def init_parameters(dimensions):
+    #The function initializes our weights and biases
+    #biases can be set to 0 but weights have to be initialized to some value
     w1 = np.random.randn(dimensions[1], dimensions[0])
     b1 = np.zeros((dimensions[1], 1))
     w2 = np.random.randn(dimensions[2], dimensions[1])
@@ -29,7 +31,9 @@ def init_parameters(dimensions):
                   'b2' : b2}
     return parameters
 
-def forward_propagation(X, Y, parameters):    
+def forward_propagation(X, Y, parameters): 
+    #The functions calculates our prediction
+    #first the tanh layer is applied and then the result is sent into the sigmoid layer to get our prediction
     m = X.shape[1]
     w1 = parameters['w1']
     b1 = parameters['b1']
@@ -49,6 +53,8 @@ def forward_propagation(X, Y, parameters):
     return Cost, forward_cache
 
 def back_propagation(X, Y, forward_cache, w2):
+    #The function calculates the gradients of Cost
+    #Here we move backwards from sigmoid layer to tanh layer
     m = X.shape[1]    
     A1 = forward_cache['A1']    
     A2 = forward_cache['A2']
@@ -68,6 +74,7 @@ def back_propagation(X, Y, forward_cache, w2):
     return gradients
 
 def predict(X, parameters):
+    #The function makes predictions based on our trained weights and biases
     w1 = parameters['w1']
     b1 = parameters['b1']
     w2 = parameters['w2']
@@ -84,6 +91,8 @@ def predict(X, parameters):
 
 
 def gradient_descent(X, Y, parameters, num_iterations, learning_rate, print_iteration):
+    #This function with every iteration tries to reduce cost and reach a minima
+    #The functions changes to values to reduce cost
     Costs = []
     for i in range(num_iterations):
         Cost, forward_cache =  forward_propagation(X, Y, parameters)
@@ -99,6 +108,12 @@ def gradient_descent(X, Y, parameters, num_iterations, learning_rate, print_iter
     
 
 def neural_net(X_train, Y_train, X_test, Y_test, num_iterations, learning_rate, dimensions, print_iteration = 0):
+    #The function is used to train our model
+    #Here the dimensions array represents [n_x, n_h, n_o] where n_x is number of input features, n_h is number of hidden units and n_0 number of output units
+    #Let n_x be 2 as it will be easier to plot the datasets. If u want to change n_x you will have to make changes in the generate_dataset function
+    #You can fiddle with n_h'
+    #Let n_o be 1 since we are trying to classify as 0 or 1
+    #For multiclass classification softmax layer is used instead of sigmoid
     parameters = init_parameters(dimensions)
     Costs, parameters = gradient_descent(X_train, Y_train, parameters, num_iterations, learning_rate, print_iteration)
     Y_train_predictions = predict(X_train, parameters)
@@ -147,43 +162,20 @@ def plot_dataset(X, Y):
     pyplot.show()
     
 def plot_cost(Costs):
+    #This function plots the changing cost with respect to the iterations
     pyplot.plot(Costs)
     pyplot.show()
 
 #Steps to create classifier
     
-#1.Load the dataset, remember to put in right filepath and not load too many images    
-X_training, Y_training, X_test, Y_test = generate_dataset(5000, 'moons')
+#1.Generate the dataset of either moons, cuircles or blobs type
+#X_training, Y_training, X_test, Y_test = generate_dataset(5000, 'moons')
 
-
-#4.Train your model
-model = neural_net(X_training, Y_training, X_test, Y_test, 5000, 0.05, [2, 4, 1], 200)
-
-print(model['training_accuracy'])
-print(model['test_accuracy'])
-plot_dataset(X_training, Y_training)
-plot_dataset(X_training, model['training_predictions'])
-plot_cost(model['Costs'])
+#3.Train your model, use different hyperparameters which suit your data
+#model = neural_net(X_training, Y_training, X_test, Y_test, 5000, 0.05, [2, 4, 1], 200)
 
 #Use predict functions with weigths and bias after training to make predictions
 #Train and test accuracy can be improved by changing the values of hyperparameters learning_rate, num_iterations, file_count
-#Try to plot the cost values with number of iterations to get an intuition about the reducing cost
+#Try to plot the cost values with number of iterations to get an intuition about the reducing cost using plot_cost function
+#Try to plot training dataset and predicted dataset using plot_dataset function
 #If your cost fluctuates up and down reduce learning_rate
-
-#97.111111
-#95.6
-#10000 iterations
-#.1 
-#5000 samples
-
-#98.888888888
-#99.2
-#1000
-#.1
-#5000
-
-#98.733333333
-99
-5000
-.05
-5000
