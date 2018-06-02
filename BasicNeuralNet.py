@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-This program performs a classification on datasets generated using sklearn. The structure of our classifier is of a simple neural net with a single hidden tanh layer 
-followed by a sigmoid output layer.
+This program performs a classification on datasets generated using sklearn. The structure of our classifier is of a
+simple neural net with a single hidden tanh layer followed by a sigmoid output layer.
 
 @author: Randeep
 """
