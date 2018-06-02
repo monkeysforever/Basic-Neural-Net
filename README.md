@@ -3,8 +3,8 @@
 Program replicates a simple single hidden layer neural network to classify datasets of different types generated using sklearn
 
 ![image1](https://user-images.githubusercontent.com/13309365/40879268-008c94fa-66bb-11e8-8bf8-7ed90e9348e8.png)
-Model 1  
 
+Model 1  
 Dataset Type : Circles  
 Training accuracy : 97.111111  
 Test accuracy : 95.6   
