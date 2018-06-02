@@ -4,6 +4,7 @@ Program replicates a simple single hidden layer neural network to classify datas
 
 ![image1](https://user-images.githubusercontent.com/13309365/40879268-008c94fa-66bb-11e8-8bf8-7ed90e9348e8.png)
 
+Below are the three models tried. For each model, changing Cost, training values and predicted values are shown respectively.  
 Model 1  
 Dataset Type : Circles  
 Training accuracy : 97.111111  
