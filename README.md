@@ -7,7 +7,7 @@ Program replicates a simple single hidden layer neural network to classify datas
 Below are the three models tried. For each model, changing Cost, training values and predicted values are shown respectively. 
 
 
-Model 1  
+# Model 1  
 Dataset Type : Circles  
 Training accuracy : 97.111111  
 Test accuracy : 95.6   
@@ -18,7 +18,7 @@ Number of Iterations : 10000
 ![training_nn1](https://user-images.githubusercontent.com/13309365/40879254-ee862802-66ba-11e8-8d92-f8996d1ac310.png)
 ![predictions_nn1](https://user-images.githubusercontent.com/13309365/40879247-e59b9aec-66ba-11e8-82c8-ab9d6dc8598f.png)
 
-Model 2  
+# Model 2  
 Dataset Type : Blobs  
 Training accuracy : 98.888888888  
 Test accuracy : 99.2  
@@ -29,7 +29,7 @@ Number of Iterations : 1000
 ![training_nn2](https://user-images.githubusercontent.com/13309365/40879256-f1674830-66ba-11e8-8592-0f02b6594939.png)
 ![predictions_nn2](https://user-images.githubusercontent.com/13309365/40879259-f4684ca0-66ba-11e8-9e3e-0182f398f0e5.png)
 
-Model 3  
+# Model 3  
 Dataset Type : Moons  
 Training accuracy : 98.733333333  
 Test accuracy : 99.0  
